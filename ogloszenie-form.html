@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>ogloszenie-form</title>
+  <meta name="viewport" content="width=800">
+  <link rel="stylesheet" href="ogloszenie-form.css">
+</head>
+<body>
+  <div class="main-bg">
+    <form class="form-container" autocomplete="off" id="ogloszenieForm">
+      <div class="ad-title-bar" id="adTitleBar" onclick="editField('adTitle')">
+        <span id="adTitleText" class="field-value">Dodaj nazwę ogłoszenia <span class='plus'>+</span></span>
+        <input id="adTitleInput" style="display:none;" maxlength="60" />
+      </div>
+      <div class="label">INWESTOR:</div>
+      <div class="input-box" id="investorBox" onclick="editField('investor')">
+        <span id="investorText" class="placeholder field-value">Imię i nazwisko</span>
+        <input id="investorInput" style="display:none;" maxlength="60" />
+      </div>
+      <div class="label">RODZAJ ROBÓT BUDOWLANYCH:</div>
+      <div class="input-box dropdown-parent" id="jobTypeBox" tabindex="0"
+           onclick="jobTypeBoxClick(event)">
+        <span id="jobTypeText" class="placeholder field-value">Wprowadź lub wybierz z listy <span class="dropdown-arrow">&#8595;</span></span>
+        <div id="jobTypeMainDropdown" class="dropdown mainJobTypeDropdown">
+          <div class="dropdown-option" onclick="selectJobTypeMode('input'); event.stopPropagation();">Wprowadź</div>
+          <div class="dropdown-option" onclick="selectJobTypeMode('list'); event.stopPropagation();">Wybierz z listy</div>
+        </div>
+        <input id="jobTypeInput" style="display:none;" maxlength="60" />
+        <div id="jobTypeDropdown" class="dropdown">
+          <div class="dropdown-option" onclick="selectJobType(event,'Remont Mieszkania')">Remont Mieszkania</div>
+          <div class="dropdown-option" onclick="selectJobType(event,'Remont łazienki')">Remont łazienki</div>
+          <div class="dropdown-option" onclick="selectJobType(event,'Elektrka')">Elektrka</div>
+          <div class="dropdown-option" onclick="selectJobType(event,'Hydraulika')">Hydraulika</div>
+          <div class="dropdown-option" onclick="selectJobType(event,'Gładzie gipsowe')">Gładzie gipsowe</div>
+          <div class="dropdown-option" onclick="selectJobType(event,'Malowanie ścian')">Malowanie ścian</div>
+          <div class="dropdown-option" onclick="selectJobType(event,'Tapetowanie')">Tapetowanie</div>
+          <div class="dropdown-option" onclick="selectJobType(event,'Zabudowa g-k')">Zabudowa g-k</div>
+          <div class="dropdown-option" onclick="selectJobType(event,'Montaż sufitu podwieszanego')">Montaż sufitu podwieszanego</div>
+          <div class="dropdown-option" onclick="selectJobType(event,'Tynki wewnętrzne')">Tynki wewnętrzne</div>
+          <div class="dropdown-option" onclick="selectJobType(event,'Posadzki')">Posadzki</div>
+          <div class="dropdown-option" onclick="selectJobType(event,'Schody')">Schody</div>
+          <div class="dropdown-option" onclick="selectJobType(event,'Płytki podłogowe')">Płytki podłogowe</div>
+          <div class="dropdown-option" onclick="selectJobType(event,'Panele podłogowe')">Panele podłogowe</div>
+          <div class="dropdown-option" onclick="selectJobType(event,'Podłogi drewniane')">Podłogi drewniane</div>
+          <div class="dropdown-option" onclick="selectJobType(event,'Cyklinowanie')">Cyklinowanie</div>
+          <div class="dropdown-option" onclick="selectJobType(event,'Meble kuchenne')">Meble kuchenne</div>
+          <div class="dropdown-option" onclick="selectJobType(event,'Ogrodzenia')">Ogrodzenia</div>
+          <div class="dropdown-option" onclick="selectJobType(event,'Bramy garażowe')">Bramy garażowe</div>
+          <div class="dropdown-option" onclick="selectJobType(event,'Wyburzenia i rozbiórki')">Wyburzenia i rozbiórki</div>
+          <div class="dropdown-option" onclick="selectJobType(event,'Złota rączka')">Złota rączka</div>
+        </div>
+      </div>
+      <div class="label">OPIS :</div>
+      <div class="desc-box" id="descBox" onclick="editField('desc')">
+        <span id="descText" class="placeholder field-value">Dodaj opis zlecenia</span>
+        <textarea id="descInput" style="display:none;" rows="5" maxlength="2000" oninput="limitWords(this,250)"></textarea>
+      </div>
+      <div class="label">Adres :</div>
+      <div class="input-box" id="addressBox" onclick="editField('address')">
+        <span id="addressText" class="placeholder field-value">dodaj adres :</span>
+        <input id="addressInput" style="display:none;" maxlength="80" />
+      </div>
+      <div class="label term-label">
+        Termin rozpoczęcia :
+        <span class="date-box">
+          data :
+          <input type="text" class="date-input" id="startDateInput" placeholder="data" onclick="event.stopPropagation();" />
+        </span>
+      </div>
+      <div class="label term-label">
+        Termin zakończenia :
+        <span class="date-box">
+          data :
+          <input type="text" class="date-input" id="endDateInput" placeholder="data" onclick="event.stopPropagation();" />
+        </span>
+      </div>
+      <div class="label">Kontakt :</div>
+      <div class="input-box" id="contactBox" onclick="editField('contact')">
+        <span id="contactText" class="placeholder field-value">Numer telefonu / Email</span>
+        <input id="contactInput" style="display:none;" maxlength="60" />
+      </div>
+      <div class="label">Nadzór budowlany :</div>
+      <div class="input-box dropdown-parent" id="supervisionBox" tabindex="0"
+           onclick="supervisionBoxClick(event)">
+        <span id="supervisionText" class="placeholder field-value">Wybierz opcje :</span>
+        <div id="supervisionDropdown" class="dropdown">
+          <div class="dropdown-option" onclick="selectSupervision(event,'Kierownik Budowlany')">Kierownik Budowlany</div>
+          <div class="dropdown-option" onclick="selectSupervision(event,'Tylko Ja')">Tylko Ja</div>
+          <div class="dropdown-option" onclick="selectSupervision(event,'Żona')">Żona</div>
+        </div>
+      </div>
+      <button type="button" class="submit-btn" id="submitAd">Zatwierdź</button>
+      <div class="footer">
+        POG. GAZOWE: 992 • POG. ENERGETYCZNE: 991 • POG. WODOCIĄGOWE: 994<br>
+        POLICJA: 997 • STRAŻ POŻARNA: 998 • POG. RATUNKOWE: 999<br>
+        <a href="http://www.sodadruk.pl" target="_blank" rel="noopener noreferrer">www.sodadruk.pl</a>
+      </div>
+    </form>
+  </div>
+  <script>
+    document.getElementById('submitAd').addEventListener('click', function () {
+      const adTitle = document.getElementById('adTitleInput').value || "Ogłoszenie bez nazwy"; // Domyślna nazwa
+      localStorage.setItem('newAdTitle', adTitle);
+      window.location.href = 'moje-ogloszenia.html';
+    });
+  </script>
+</body>
+</html>

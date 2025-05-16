@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logowanie - Klient</title>
+    <link rel="stylesheet" href="login-client.css">
+</head>
+<body>
+    <div class="login-background">
+        <div class="login-container">
+            <img src="assets/tools-icon-login.png" alt="BudBud Logo" class="logo">
+            <h1>BudBud</h1>
+            <form id="loginForm">
+                <input type="email" id="email" placeholder="E-mail" required>
+                <input type="password" id="password" placeholder="Twoje hasło" required>
+                <a href="#" class="forgot-password">Zapomniałeś hasła?</a>
+                <button type="submit" class="login-button">Zaloguj się</button>
+            </form>
+            <div class="social-login">
+                <button class="facebook-login">Zaloguj przez Facebook</button>
+                <button class="google-login">Zaloguj przez Google</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Zatrzymanie domyślnej akcji formularza
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            // Sprawdzenie poprawności loginu i hasła
+            if (email === "kamil@wp.pl" && password === "kamil") {
+                window.location.href = "panel-klienta.html"; // Przekierowanie do panelu klienta
+            } else {
+                alert("Nieprawidłowy login lub hasło!"); // Wyświetlenie błędu
+            }
+        });
+    </script>
+</body>
+</html>

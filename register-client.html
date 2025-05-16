@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rejestracja - Klient</title>
+    <link rel="stylesheet" href="styles-register.css">
+</head>
+<body>
+    <div class="registration-container">
+        <h1>Rejestracja</h1>
+        <form class="registration-form">
+            <fieldset>
+                <legend>Dane osobowe</legend>
+                <label for="email">* E-mail:</label>
+                <input type="email" id="email" required>
+
+                <label for="first-name">* Imię:</label>
+                <input type="text" id="first-name" required>
+
+                <label for="last-name">* Nazwisko:</label>
+                <input type="text" id="last-name" required>
+
+                <label for="phone">* Telefon:</label>
+                <input type="tel" id="phone" placeholder="Format liczbowy, np.: 123456789" required>
+
+                <label for="password">* Hasło:</label>
+                <input type="password" id="password" placeholder="Minimum 6 znaków" required>
+
+                <label for="confirm-password">* Powtórz hasło:</label>
+                <input type="password" id="confirm-password" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>Dane adresowe</legend>
+                <label for="street">* Ulica i nr domu:</label>
+                <input type="text" id="street" placeholder="Np.: Mickiewicza 6/24" required>
+
+                <label for="postal-code">* Kod pocztowy:</label>
+                <input type="text" id="postal-code" placeholder="Format dla Polski: xx-xxx" required>
+
+                <label for="city">* Miasto:</label>
+                <input type="text" id="city" required>
+
+                <label for="country">Kraj:</label>
+                <select id="country" required>
+                    <option value="Polska" selected>Polska</option>
+                    <option value="Niemcy">Niemcy</option>
+                    <option value="Czechy">Czechy</option>
+                    <option value="Słowacja">Słowacja</option>
+                </select>
+            </fieldset>
+
+            <button type="submit" class="register-button">Zarejestruj się</button>
+        </form>
+    </div>
+</body>
+</html>

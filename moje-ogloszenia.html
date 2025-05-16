@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moje Ogłoszenia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .sort-section {
+            margin-bottom: 20px;
+        }
+
+        .sort-section label {
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .sort-section select {
+            font-size: 16px;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .add-ad-section, .ad-item {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            margin-top: 10px;
+        }
+
+        .add-ad-button, .delete-ad-button {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: black;
+        }
+
+        .add-ad-button .custom-image, .delete-ad-button .custom-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .add-ad-button .custom-image {
+            background-color: #4CAF50;
+        }
+
+        .add-ad-button .custom-image::before {
+            content: "+";
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .delete-ad-button .custom-image {
+            background-color: #FF0000;
+        }
+
+        .delete-ad-button .custom-image::before {
+            content: "-";
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .delete-ad-button:hover .custom-image::before {
+            cursor: pointer;
+        }
+
+        .delete-ad-button .tooltip {
+            position: absolute;
+            background-color: black;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+            display: none;
+        }
+
+        .delete-ad-button:hover .tooltip {
+            display: block;
+        }
+
+        .add-ad-button span, .ad-item span {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sortowanie -->
+        <div class="sort-section">
+            <label for="sort">Sortuj:</label>
+            <select id="sort">
+                <option value="newest" selected>Od najnowszych</option>
+                <option value="oldest">Od najstarszych</option>
+            </select>
+        </div>
+
+        <!-- Przycisk dodania nowego ogłoszenia -->
+        <div class="add-ad-section">
+            <a href="ogloszenie-form.html" class="add-ad-button">
+                <div class="custom-image"></div>
+                <span>Dodaj darmowe ogłoszenie</span>
+            </a>
+        </div>
+
+        <!-- Sekcja dynamicznych ogłoszeń -->
+        <div id="ads-container"></div>
+    </div>
+
+    <script>
+        // Pobierz nazwę nowego ogłoszenia z localStorage
+        const newAdTitle = localStorage.getItem('newAdTitle');
+        const adsContainer = document.getElementById('ads-container');
+
+        if (newAdTitle) {
+            // Tworzenie nowego elementu ogłoszenia
+            const adItem = document.createElement('div');
+            adItem.className = 'ad-item';
+
+            // Przycisk usuń
+            const deleteButton = document.createElement('a');
+            deleteButton.className = 'delete-ad-button';
+            deleteButton.innerHTML = `
+                <div class="custom-image"></div>
+                <span class="tooltip">Usuń ogłoszenie</span>
+            `;
+            deleteButton.addEventListener('click', () => {
+                adsContainer.removeChild(adItem); // Usunięcie ogłoszenia
+            });
+
+            // Treść ogłoszenia
+            const adContent = document.createElement('span');
+            adContent.textContent = newAdTitle;
+
+            // Dodanie elementów do ogłoszenia
+            adItem.appendChild(deleteButton);
+            adItem.appendChild(adContent);
+
+            // Dodanie nowego ogłoszenia do sekcji
+            adsContainer.appendChild(adItem);
+
+            // Usunięcie danych z localStorage
+            localStorage.removeItem('newAdTitle');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+/* Globalne style */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('assets/brick-background.jpg'); /* Tło cegły */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Kontener strony głównej */
+.container {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6); /* Półprzeźroczyste tło */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 90%;
+}
+
+.container .header {
+    margin-bottom: 20px;
+}
+
+.container .header h1 {
+    font-size: 2em;
+    margin: 10px 0;
+}
+
+.container .header p {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+/* Sekcja przycisków */
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: black;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.button img {
+    width: 40px;
+    margin-bottom: 10px;
+}
+
+.links {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.link {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.link:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
